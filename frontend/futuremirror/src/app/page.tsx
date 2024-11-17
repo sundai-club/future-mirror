@@ -60,7 +60,7 @@ export default function Home() {
                 <div
                     className="mt-10 p-8 rounded-lg w-1/2"
                     style={{
-                        backgroundColor: "rgba(223,242,182,0.44)", // Section background color
+                        backgroundColor: "rgba(223,242,182,0.77)", // Section background color
                         borderColor: "#000000", // Border color
                         borderWidth: "2px",
                         color: "#000", // Text color
