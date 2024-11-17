@@ -8,7 +8,7 @@ neg_prompt = """cartoonish, abstract, unrealistic, exaggerated features, overemo
                 anime, comic, 3D render, low quality, pixelated"""
 
 
-def get_image(prompt, current_image):
+def get_image(type_, prompt, current_image):
     input = {
         "width": 768,
         "height": 768,
@@ -47,8 +47,10 @@ def get_image(prompt, current_image):
     if response.status_code == 200:
         content_type = response.headers.get('content-type')
         if 'image' in content_type:
-            with open(f"output_images/output.png", "wb") as file:
+            with open(f"output_images/output_{type_}.png", "wb") as file:
                 file.write(response.content)
+            return f"output_images/output_{type_}.png"
         else:
             print("Response is not an image")
+    
     

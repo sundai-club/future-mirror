@@ -188,3 +188,14 @@ Give the output in following format:
 
 Output(summary):
 """
+
+
+new_img_prompts = """
+Based on the given image description generate two descriptions one for a healthier person and one for an unhealthier person.
+
+image_prompt - "{image_prompt}"
+
+Give the output in following format:
+```json{{"healthy_prompt": "healthy_prompt", "unhealthy_prompt": "unhealthy_prompt"}}```
+
+Output:"""
