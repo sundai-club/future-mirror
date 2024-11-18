@@ -39,7 +39,7 @@ def get_pos_neg_image_prompts(image_prompt: str):
     return image_prompts
 
 
-@app.post("/upload_image/")
+@app.post("/upload_image")
 async def upload_img(file: UploadFile = File(...)):
     file_path = UPLOAD_DIR / 'uploaded_image.jpg'
     with open(file_path, "wb") as f:

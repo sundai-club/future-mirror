@@ -20,7 +20,7 @@ export default function PhotoUploadPage() {
             formData.append('file', uploadedFile);
       
             // Send a POST request to the server to validate the file
-            const response = await axios.post('/api/upload', formData);
+            const response = await axios.post(BACKEND_URL + '/upload_image', formData);
       
             // Navigate to the /display page on successful response
             if (response.status === 200) {
