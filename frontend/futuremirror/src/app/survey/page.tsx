@@ -1,11 +1,12 @@
-// src/app/survey/page.tsx
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // For navigation to another page
 
 export default function Survey() {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState<{ [key: number]: number }>({});
+    const router = useRouter(); // Initialize router for navigation
 
     const questions = [
         {
@@ -178,13 +179,15 @@ export default function Survey() {
         const totalScore = Object.values(answers).reduce((sum, score) => sum + score, 0);
         console.log('Survey answers:', answers);
         console.log('Total Score:', totalScore);
-        // Add your submission logic here
+
+        // Navigate to the photo upload page after submitting the survey
+        router.push('/photo');
     };
 
     return (
         <div
             className="min-h-screen flex flex-col items-center justify-between p-8 pb-20 font-[family-name:var(--font-geist-sans)]"
-            style={{ backgroundColor: '#85BF4B' }} // Branding background color
+            style={{ backgroundColor: '#85bf4b' }} // Branding background color
         >
             <div className="w-full max-w-4xl mx-auto flex-grow flex flex-col gap-8 justify-center">
                 {/* Header */}
@@ -199,9 +202,10 @@ export default function Survey() {
 
                 {/* Question Card */}
                 <div
-                    className="w-full bg-[#DFF2B6] rounded-lg border border-[#76A646] p-8"
+                    className="w-full rounded-lg border border-[#76A646] p-8"
                     style={{
                         color: '#000',
+                        backgroundColor: 'rgba(223,242,182,0.68)',
                     }}
                 >
                     <h2 className="text-3xl font-semibold mb-8">{questions[currentQuestion].question}</h2>
@@ -210,7 +214,7 @@ export default function Survey() {
                             <button
                                 key={index}
                                 onClick={() => handleAnswer(option.score)}
-                                className="w-full text-left p-6 rounded-lg border border-[#76A646] bg-[#EAF2CE] hover:bg-[#DFF2B6] transition-colors"
+                                className="w-full text-left p-6 rounded-lg border border-[#76A646] bg-[#EAF2CE] hover:bg-[#86BF4A] transition-colors"
                             >
                                 {option.text}
                             </button>
@@ -221,9 +225,11 @@ export default function Survey() {
                     {currentQuestion === questions.length - 1 && Object.keys(answers).length === questions.length && (
                         <button
                             onClick={handleSubmit}
-                            className="mt-8 rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-[#76A646] text-white gap-2 hover:bg-[#5E9440] text-lg h-14 px-8 w-full"
+                            className="mt-8 rounded-full border border-solid
+                            border-transparent transition-colors flex items-center justify-center
+                            bg-[#467B12] text-white gap-2 hover:bg-[#5E9440] text-lg h-14 px-8 w-full"
                         >
-                            Submit Survey
+                            Next Step to See Your Future Self
                         </button>
                     )}
                 </div>
@@ -232,7 +238,7 @@ export default function Survey() {
                 <div className="w-full bg-[#EAF2CE] rounded-lg border border-[#76A646] p-4">
                     <div className="w-full bg-gray-200 h-2 rounded-full">
                         <div
-                            className="bg-[#76A646] h-2 rounded-full transition-all duration-300"
+                            className="bg-[#000000] h-2 rounded-full transition-all duration-300"
                             style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
                         />
                     </div>
