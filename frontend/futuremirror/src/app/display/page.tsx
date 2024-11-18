@@ -78,7 +78,7 @@ export default function DisplayPage() {
                                 />
                             </div>
                             <h2 className="text-xl font-semibold mb-2 text-center"
-                            style={{color:"#000000"}}>
+                                style={{color:"#000000"}}>
                                 {item.title}
                             </h2>
                             <p className="text-sm text-gray-700 text-center"
