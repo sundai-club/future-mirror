@@ -1,9 +1,5 @@
-import base64
 import replicate
 import time
-import requests
-import shutil
-import os
 
 neg_prompt = """cartoonish, abstract, unrealistic, exaggerated features, overemotional, 
                 anime, comic, 3D render, low quality, pixelated"""

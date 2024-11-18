@@ -1,14 +1,11 @@
 from pathlib import Path
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-import json
 from src.openai_api import OpenAIAPI
 from src.prompts import image_gen_prompt, summary_gen_prompt, new_img_prompts
 import logging
 from src.utils import parse_reponse
 from src.replicate_api import generate_image
-from shutil import copyfile
 
 logging.basicConfig(level=logging.INFO)
 
