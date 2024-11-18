@@ -1,8 +1,7 @@
 // src/app/page.tsx
 import Image from "next/image";
 import Link from "next/link";
-import logo from "./components/futureself.png"; // Corrected logo import path
-
+// import logo from "components/futurself.png";
 export default function Home() {
     return (
         <div
@@ -11,16 +10,16 @@ export default function Home() {
             style={{ backgroundColor: "#76A646" }} // Background color from your palette
         >
             <main className="flex flex-col gap-8 items-center w-full mx-auto">
-                {/* Logo */}
+                {/* Logo
                 <div className="mb-6">
                     <Image
-                        src={logo} // Updated logo path usage
+                        src={} // Updated logo path usage
                         alt="Future Mirror Logo"
                         width={400} // Adjust width as needed
                         height={200} // Adjust height as needed
                         priority
                     />
-                </div>
+                </div> */}
 
                 {/* Call to Action */}
                 <div className="text-center max-w-lg">

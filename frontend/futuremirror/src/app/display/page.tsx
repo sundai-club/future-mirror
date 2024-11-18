@@ -1,9 +1,8 @@
 'use client';
 
-import React from 'react';
 import Image from "next/image";
 // Adjust the import path to be relative to your current file location
-import logo from "../components/futureself.png";  // Update this path based on your file structure
+//import logo from "./components/futureself.png:";  // Update this path based on your file structure
 
 export default function DisplayPage() {
     const imageData = [
@@ -33,11 +32,10 @@ export default function DisplayPage() {
     return (
         <div
             className="min-h-screen flex flex-col items-center justify-center p-8"
-            style={{ backgroundColor: '#85BF4B' }} // Set background color directly
-        >
+            style={{ backgroundColor: '#85BF4B' }} > // Set background color directly
             {/* Main container */}
             <div className="w-full max-w-7xl">
-                {/* Logo */}
+                {/* Logo
                 <div className="flex justify-center mb-12">
                     <Image
                         src={logo}
@@ -46,7 +44,7 @@ export default function DisplayPage() {
                         height={200}
                         priority
                         className="object-contain"
-                    />
+                    />*/}
                 </div>
 
                 {/* Header */}
@@ -90,6 +88,6 @@ export default function DisplayPage() {
                     ))}
                 </div>
             </div>
-        </div>
+
     );
 }
