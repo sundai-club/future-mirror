@@ -42,8 +42,8 @@ export default function DisplayPage() {
                     <Image
                         src={logo}
                         alt="Future Mirror Logo"
-                        width={400}
-                        height={200}
+                        width={200}
+                        height={50}
                         priority
                         className="object-contain"
                     />
@@ -51,7 +51,7 @@ export default function DisplayPage() {
 
                 {/* Header */}
                 <div className="text-center mb-16"
-                     style={{paddingBottom:"5%"}}>
+                     style={{paddingBottom:"10x"}}>
                     <h1 className="text-4xl font-bold text-white">Your Lifestyle Projections</h1>
                     <p className="text-xl text-[#EAF2CE] mt-4">
                         See how your choices today could shape your tomorrow.
