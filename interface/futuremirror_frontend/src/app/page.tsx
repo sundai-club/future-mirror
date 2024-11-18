@@ -42,18 +42,7 @@ export default function Home() {
             >
               Start Survey
             </Link>
-            <a
-                className="rounded-full border border-solid transition-colors flex items-center justify-center text-lg sm:text-xl h-14 sm:h-16 px-8 sm:px-10"
-                style={{
-                  backgroundColor: "rgba(223,242,182,0.44)", // Green hover background
-                  color: "#000000",
-                  borderColor: "#000000", // Black border
-                  borderWidth: "3px"
-                }}
-                href="#learn-more"
-            >
-              Learn More
-            </a>
+
           </div>
 
           {/* Info Section */}
