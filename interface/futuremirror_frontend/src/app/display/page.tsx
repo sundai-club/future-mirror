@@ -6,24 +6,42 @@ import Image from "next/image";
 import logo from "../components/futureself.png";  // Update this path based on your file structure
 
 export default function DisplayPage() {
+
+    // get images from local storage
+    const images = JSON.parse(localStorage.getItem("images") || "");
+
+    let healthy_image = ""
+    let negative_image = ""
+    let current_image = ""
+
+    for (let i = 0; i < images.length; i++) {
+        if (images[i].prompt_type = "healthy_prompt") {
+            healthy_image = images[i].image_path
+        } else if (images[i].prompt_type = "unhealthy_prompt") {
+            negative_image = images[i].image_path
+        } else {
+            current_image = images[i].image_path
+        }
+    }
+
     const imageData = [
         {
             id: 1,
-            url: '/images/positive-image.jpg',  // Place these images in your public folder
+            url: healthy_image,  // Place these images in your public folder
             title: 'Healthier Future You',
             description: 'How your future self could look with positive lifestyle changes.',
             bgColor: 'bg-[#DFF2B6]',
         },
         {
             id: 2,
-            url: '/images/uploaded-image.jpg',
+            url: current_image,
             title: 'Current You',
             description: 'Your current state based on your uploaded photo.',
             bgColor: 'bg-[#EAF2CE]',
         },
         {
             id: 3,
-            url: '/images/negative-image.jpg',
+            url: negative_image,
             title: 'Decline in Wellness',
             description: 'The potential impact of negative lifestyle changes.',
             bgColor: 'bg-[#F8E8E8]',

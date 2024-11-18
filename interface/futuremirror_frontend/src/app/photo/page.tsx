@@ -46,6 +46,9 @@ export default function PhotoUploadPage() {
         });
         console.log("Survey submitted successfully:", response.data);
 
+        // save images to local storage
+        localStorage.setItem("images", JSON.stringify(response.data.image_paths));
+
         // Navigate to the photo upload page after submitting the survey
         const router = useRouter();
         router.push("/photo");
