@@ -10,23 +10,22 @@ export default function Home() {
       font-[family-name:var(--font-geist-sans)] w-full"
           style={{ backgroundColor: "#76A646" }} // Background color from your palette
       >
-        <main className="flex flex-col gap-8 items-center w-full mx-auto">
+        <main className="flex flex-col items-center w-full mx-auto">
           {/* Logo */}
           <div className="mb-6">
             <Image
                 src={logo} // Updated logo path usage
                 alt="Future Mirror Logo"
-                width={400} // Adjust width as needed
-                height={200} // Adjust height as needed
+                width={300} // Adjust width as needed
+                height={100} // Adjust height as needed
                 priority
             />
           </div>
 
           {/* Call to Action */}
           <div className="text-center max-w-lg">
-            <p className="text-xl mb-8" style={{ color: "#EAF2CE" }}>
-              Help us shape the future by participating in our research survey.
-              Your insights matter!
+            <p className="text-xl" style={{ color: "#EAF2CE", paddingBottom:"10px" }}>
+              See your future self, shape it today!
             </p>
           </div>
 
