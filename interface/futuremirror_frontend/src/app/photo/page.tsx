@@ -2,26 +2,64 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'; // Import router for navigation
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function PhotoUploadPage() {
     const [uploadedFile, setUploadedFile] = useState<File | null>(null);
     const [uploadSuccess, setUploadSuccess] = useState(false);
     const router = useRouter(); // Initialize router
 
+    const BACKEND_URL = "https://future-mirror-199983032721.us-central1.run.app/"
 
-    const handleSubmit = () => {
+
+    const handleSubmit = async () => {
         if (uploadedFile) {
-            // Navigate to the /display page
-            router.push('/display');
+          try {
+            // Create the file data
+            const formData = new FormData();
+            formData.append('file', uploadedFile);
+      
+            // Send a POST request to the server to validate the file
+            const response = await axios.post('/api/upload', formData);
+      
+            // Navigate to the /display page on successful response
+            if (response.status === 200) {
+              const router = useRouter();
+              router.push('/display');
+            } else {
+              alert('Failed to upload file. Please try again.');
+            }
+          } catch (error) {
+            console.error('Error sending request:', error);
+            alert('Failed to upload file. Please try again.');
+          }
         } else {
-            alert('Please upload a photo before proceeding.');
+          alert('Please upload a photo before proceeding.');
+        }
+
+        // get the answers from local storage
+        const answers = localStorage.getItem("answers") || "" + localStorage.getItem("totalScore") || "0";
+
+        try {
+        const response = await axios.post(BACKEND_URL + "/get_images", {
+            answers,
+        });
+        console.log("Survey submitted successfully:", response.data);
+
+        // Navigate to the photo upload page after submitting the survey
+        const router = useRouter();
+        router.push("/photo");
+        } catch (error) {
+        console.error("Error submitting survey:", error);
         }
     };
-    const handleFileUpload = (files: FileList | null) => {
+
+    const handleFileUpload = async (files: FileList | null) => {
         if (files && files.length > 0) {
             setUploadedFile(files[0]);
             setUploadSuccess(true);
         }
+        
     };
 
     const handleDragOver = (e: React.DragEvent) => {

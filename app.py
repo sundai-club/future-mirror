@@ -43,7 +43,6 @@ def get_pos_neg_image_prompts(image_prompt: str):
 async def upload_img(file: UploadFile = File(...)):
     file_path = UPLOAD_DIR / 'uploaded_image.jpg'
     with open(file_path, "wb") as f:
-        # Correctly write the contents of the uploaded file
         f.write(await file.read())
     return {"message": f"File uploaded successfully: {'uploaded_image.jpg'}"}
     
@@ -51,7 +50,6 @@ async def upload_img(file: UploadFile = File(...)):
 @app.post("/get_images")
 def get_images(request: dict):
     survey = request['survey']
-    
     
     current_image = open(UPLOAD_DIR / 'uploaded_image.jpg', 'rb')
     if current_image is None:
