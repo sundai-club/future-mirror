@@ -9,9 +9,9 @@ neg_prompt = """cartoonish, abstract, unrealistic, exaggerated features, overemo
                 anime, comic, 3D render, low quality, pixelated"""
 
 
-def generate_image(type_, prompt, current_image):
-    with open(current_image, "rb") as f:
-        current_image = base64.b64encode(f.read()).decode("utf-8")
+def generate_image(prompt, current_image):
+    # with open(current_image, "rb") as f:
+    #     current_image = base64.b64encode(f.read()).decode("utf-8")
         
     input = {
         "width": 768,
@@ -30,6 +30,7 @@ def generate_image(type_, prompt, current_image):
     }
     prediction =  replicate.predictions.create(
         "7762fd07cf82c948538e41f63f77d685e02b063e37e496e96eefd46c929f9bdc",
+        # "black-fore"
         input=input
     )
     for i in range(100):
@@ -48,14 +49,5 @@ def generate_image(type_, prompt, current_image):
     print(output_url)
 
     return output_url
-    # response = requests.get(output_url)
-    # if response.status_code == 200:
-    #     content_type = response.headers.get('content-type')
-    #     if 'image' in content_type:
-    #         with open(f"output_images/output_{type_}.png", "wb") as file:
-    #             file.write(response.content)
-    #         return f"output_images/output_{type_}.png"
-    #     else:
-    #         print("Response is not an image")
     
     

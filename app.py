@@ -27,8 +27,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def get_image_prompt(request: dict):
-    survey = request["survey"]
+def get_image_prompt(survey: str):
     logging.info("Generating summary")
     summary = parse_reponse(openai_api.generate_response(summary_gen_prompt.format(survey=survey)))['summary']
     logging.info("Generating image prompt")
@@ -45,21 +44,19 @@ def get_pos_neg_image_prompts(image_prompt: str):
 
 @app.post("/upload_image/")
 async def upload_img(file: UploadFile = File(...)):
-    file_path = UPLOAD_DIR / file.filename
-    with open(file_path, "wb") as buffer:
-        copyfile(file.file, buffer)
-    return {"filename": "File uploaded successfully : {file.filename}"}
+    file_path = UPLOAD_DIR / 'uploaded_image.jpg'
+    with open(file_path, "wb") as f:
+        # Correctly write the contents of the uploaded file
+        f.write(await file.read())
+    return {"message": f"File uploaded successfully: {'uploaded_image.jpg'}"}
     
 
 @app.post("/get_images")
 def get_images(request: dict):
-    survey = request["survey"]
+    survey = request['survey']
     
-    current_image = None
-    for file in UPLOAD_DIR.iterdir():
-        if file.is_file():
-            current_image = file
     
+    current_image = open(UPLOAD_DIR / 'uploaded_image.jpg', 'rb')
     if current_image is None:
         raise HTTPException(status_code=400, detail="No image has been uploaded yet")
     
@@ -68,10 +65,16 @@ def get_images(request: dict):
     image_prompts['original_image_prompt'] = original_image_prompt
     image_paths = []
     for prompt_type, prompt in image_prompts.items():
-        image_path = generate_image(prompt_type, prompt, str(current_image))
+        logging.info(f"Generating image for {prompt_type}")
+        image_path = generate_image(prompt, current_image)
         image_paths.append({"image_path": image_path, "prompt_type": prompt_type})
         
     return {"image_paths": image_paths}
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
 

@@ -95,7 +95,7 @@ Person Profile:
 Summary:
 {summary}
 
-Give the prompt in the following format
+Give the prompt in the following format enclosed in backticks
 ```json{{"image_prompt": "image_prompt"}}```
 
 Output(image_prompt):
@@ -193,9 +193,10 @@ Output(summary):
 new_img_prompts = """
 Based on the given image description generate two descriptions one for a healthier person and one for an unhealthier person.
 
-image_prompt - "{image_prompt}"
+image_prompt: "{image_prompt}"
 
-Give the output in following format:
+Give the output in following format enclosed in backticks:
 ```json{{"healthy_prompt": "healthy_prompt", "unhealthy_prompt": "unhealthy_prompt"}}```
 
-Output:"""
+Output:
+"""

@@ -1,4 +1,7 @@
 import openai
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 class OpenAIAPI:
     def __init__(self):
@@ -6,11 +9,12 @@ class OpenAIAPI:
     
 
     def generate_response(self, prompt):
-        response = self.openai_client.Completion.create(
-            engine="gpt-4o-mini",
-            prompt=prompt,
-            max_tokens=1024,
-            temperature=0.3,
+        response = self.openai_client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=4096,
+            temperature=0.2,
         )
-        return response.choices[0].message.content
+        response = response.choices[0].message.content
+        return response
     
