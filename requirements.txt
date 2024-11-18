@@ -1,0 +1,5 @@
+openai
+replicate
+fastapi[all]
+requests
+python-multipart
